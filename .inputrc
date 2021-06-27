@@ -1,0 +1,129 @@
+# vim: ft=readline
+#
+#      _                   _
+#     (_)_ __  _ __  _   _| |_ _ __ ___
+#     | | '_ \| '_ \| | | | __| '__/ __|
+#    _| | | | | |_) | |_| | |_| | | (__
+#   (_)_|_| |_| .__/ \__,_|\__|_|  \___|
+#             |_|
+#
+#   ~/.inputrc
+#   User configuration file for GNU readline
+#
+# Wrtitten to work on *most* GNU/Linux distributions.
+# Things not working or WIP are commented out. Unless I forgot.
+# Much of what follows has been "stolen" from many places over the years and
+# tweaked to suit my workflow and personal preferences; feel free to do the same.
+#
+# Remember, like with all of my work, I am only able to provide the following
+# assurance(s):
+# It is almost certainly going to work until it breaks; although I have to
+# admit it may never work and that would be sad.
+# When/if it does break, you may keep all of the pieces.
+# If you find my materials helpful, both you & I will be happy, at least for a
+# little while.
+# My advice is worth every penny you paid for it!
+#
+# by:
+# Giuseppe (mhsalvor) Molinaro
+# g.molinaro@linuxmail.org
+# https://githup.com/mhsalvor
+###
+
+# Include the defaults
+$include /etc/inputrc
+
+# do not ring the bell on tab-completion
+set bell-style none
+
+# Make sure we don't output everything on the 1 line
+set horizontal-scroll-mode off
+
+
+#=== Editing mode ===#
+
+# enable vi mode in the shell
+set editing-mode vi
+# use cursor shape to indicate in which mode we are.
+# Ps = 0  -> blinking block.
+# Ps = 1  -> blinking block (default).
+# Ps = 2  -> steady block.
+# Ps = 3  -> blinking underline.
+# Ps = 4  -> steady underline.
+# Ps = 5  -> blinking bar (xterm).
+# Ps = 6  -> steady bar (xterm).
+set show-mode-in-prompt on
+set vi-ins-mode-string "\1\e[5 q\2"
+set vi-cmd-mode-string "\1\e[1 q\2"
+
+$if mode=vi
+    # NORMAL mode commands
+    set keymap vi-command
+    Control-l:clear-screen
+    Control-a:beginning-of-line
+    Control-e:end-of-line
+    # INSERT mode commands
+    set keymap vi-insert
+    Control-l:clear-screen
+    Control-a:beginning-of-line
+    Control-e:end-of-line
+$endif
+
+#=== Keybindigs ===#
+
+# reload this file
+"\C-x\C-r":re-read-init-file
+# search the history
+Control-p: history-search-backward
+Control-n:history-search-forward
+# use TAB to cicle through completions
+# menu-complete : replaces the work with a single match from the list, repeat to
+# go through the list.
+TAB:menu-complete
+# Shift-TAB = <ESC>[Z
+"\e[Z":menu-complete-backward
+# Text manipulation
+Control-u:kill-whole-line
+
+#=== Options ===#
+
+# Show all autocomplete results at once
+set page-completions off
+# display possible completion uding LS_COLORS  for file types
+set colored-stats on
+# enable colors for the matching portion during completion
+set colored-completion-prefix on
+# if on, completion ignore cases
+set completion-ignore-case off
+# if on, every mymlink to a directoy will have a slash appended
+set mark-symlinked-directories on
+# sets completion to be listed immediately, if more than one possible match, instea
+# of having to ring the bell
+set show-all-if-ambiguous on
+# Same as before, but when no partial completion can be made
+set show-all-if-unmodified on
+# if on, meny completion display the common prefix of the list of possible completion
+# before cycling through the lis
+set menu-complete-display-prefix on
+# sets completions to be appended by chars that indicate their fyle types, as
+# reported by the "stat" system call. like "ls -F"
+set visible-stats on
+#--- Allow UTF-8 input and output, instead of showing stuff like $'\0123\0456'
+# allow 8bit input
+set meta-flag on
+# don't strip char to 7 bits when reading
+set input-meta on
+# display chars with 8bit set directly rather than as meta-prefixes
+set output-meta on
+# allor iso-latin1 chars to be inserted rather than being converted to prefix-meta sequences
+set convert-meta off
+# Be more intelligent when autocompleting by also looking at the text after
+# the cursor. For example, when the current line is "cd ~/src/mozil", and
+# the cursor is on the "z", pressing Tab will not autocomplete it to "cd
+# ~/src/mozillail", but to "cd ~/src/mozilla". (This is supported by the
+# Readline used by Bash 4.)
+set skip-completed-text on
+# stop the shell from auto-executing pasted lines
+set enable-bracketed-paste on
+
+###EOF###

@@ -1,0 +1,151 @@
+#!/usr/bin/env bash
+# vim: ft=bash
+#
+#       __                  _   _
+#      / _|                | | (_)
+#     | |_ _   _ _ __   ___| |_ _  ___  _ __  ___
+#     |  _| | | | '_ \ / __| __| |/ _ \| '_ \/ __|
+#    _| | | |_| | | | | (__| |_| | (_) | | | \__ \
+#   (_)_|  \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
+#
+#   ~/.functions
+#   This files contains everything that should be an alias, but it's too complicated
+#       to be one. ~/.bashrc sources this file after ~/.aliasrc
+#
+# Wrtitten to work on *most* GNU/Linux distributions.
+# Things not working or WIP are commented out. Unless I forgot.
+# Much of what follows has been "stolen" from many places over the years and
+# tweaked to suit my workflow and personal preferences; feel free to do the same.
+#
+# Remember, like with all of my work, I am only able to provide the following
+# assurance(s):
+# It is almost certainly going to work until it breaks; although I have to
+# admit it may never work and that would be sad.
+# When/if it does break, you may keep all of the pieces.
+# If you find my materials helpful, both you & I will be happy, at least for a
+# little while.
+# My advice is worth every penny you paid for it!
+#
+# by:
+# Giuseppe (mhsalvor) Molinaro
+# g.molinaro@linuxmail.org
+# https://githup.com/mhsalvor
+###
+
+#=== ext - archive omni-eextractor ===#
+# use: ext <file>
+ext (){
+    if [ ! -f $1 ] ; then
+        # display usage if no paramaters are given
+        echo "Use: ext <file1> [file2 file 2] ..."
+        return 1
+    else
+        for n in $@
+        do
+            if [ -f "$n" ] ; then
+                case "${n%.}" in
+                    *.tar.bz2)  tar xjf "$n" ;;
+                    *.tbz2)     tar xjf "$n" ;;
+                    *.tar.gz)   tar xzf "$n" ;;
+                    *.tgz)      tar xzf "$n" ;;
+                    *.tar.xz)   tar xvf "$n" ;;
+                    *.txz)      tar xvf "$n" ;;
+                    *.tar)      tar xvf "$n" ;;
+                    *.lzma)     unlzma "$n" ;;
+                    *.bz2)      bunzip "$n" ;;
+                    *.rar)      unrar x -ad "$n" ;;
+                    *.gz)       gunzip "$n" ;;
+                    *.zip)      unzip "$n" ;;
+                    *.7z)       7z x "$n" ;;
+                    *.arj)      7z x "$n" ;;
+                    *.cab)      7z x "$n" ;;
+                    *.chm)      7z x "$n" ;;
+                    *.dmg)      7z x "$n" ;;
+                    *.iso)      7z x "$n" ;;
+                    *.lzh)      7z x "$n" ;;
+                    *.msi)      7z x "$n" ;;
+                    *.rpm)      7z x "$n" ;;
+                    *.udf)      7z x "$n" ;;
+                    *.wim)      7z x "$n" ;;
+                    *.xar)      7z x "$n" ;;
+                    *.deb)      ar x "$n" ;;
+                    *.xz)       unxz "$n" ;;
+                    *.exe)      cabextract "$n" ;;
+                    *.z)        uncompress "$n" ;;
+                    *.Z)        uncompress "$n" ;;
+                    *) echo "ext: '$n' - unknown archive method"
+                        return 1 ;;
+                esac
+            else
+                echo "'$n' - is not a valid file or does not exist."
+                return 1
+            fi
+        done
+    fi
+}
+#=== - ===#
+
+#=== colors - prints the current colorscheme ===#
+# use: colors
+colors() {
+    local fgc bgc vals seq0
+    printf "Color escapes are %s\n" '\e[${value};...${value}m'
+    printf "Values 30..37 are \e[33m foreground colors\e[m\n"
+    printf "Values 40..47 are \e[43m background colors\e[m\n"
+    printf "Value 1 gives a \e[1m bold-faced look\e[m\n\n"
+    # foreground colors
+    for fgc in {30..37} ; do
+        # background colors
+        for bgc in {40..47} ; do
+            fgc=${fgc#37}   # white
+            bgc=${bgc#40}   #black
+            vals="${fgc:+$fgc;}${bgc}"
+            vals=${vals%%;}
+            seq0="${vals:+\e[${vals}m}"
+            printf " %-9s" "${seq0:-(default)}"
+            printf " ${seq0}TEXT\e[m"
+            printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
+        done
+        echo; echo
+    done
+}
+#=== - ===#
+
+#=== lowercase - move filenames to lowercase ===#
+# use: lowercase FILe
+lowercase() {
+    for file ; do
+        filename=${file##*/}
+        case "$filename" in
+            */*) dirname==${file%/*} ;;
+            *) dirname=. ;;
+        esac
+        nf=$(echo $filename | tr A-Z a-z)
+        newname="${dirname}/${nf}"
+        if [ "$nf" != " $filename" ] ; then
+            mv "$file" "$newname"
+            echo "lowercase: $file -> $newname pippo"
+        else
+            echo "lowercase: $file not changed"
+        fi
+    done
+}
+#=== - ===#
+
+#=== nameswap - swaps 2 filenames around
+# use: nameswap <file1> <file2>
+nameswap() {
+    local tmpfile=tmp.$$
+    mv $1 $tmpfile
+    mv $2 $1
+    mv $tmpfile $2
+}
+#=== - ===#
+
+#=== weather - show the weather ===#
+weather() {
+    curl -s "https://wttr.in/${1:-Pisa}?m2F&format=v2"
+}
+
+
+###EOF###

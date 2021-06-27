@@ -1,0 +1,126 @@
+# vim: ft=config
+#
+#    _  _____      _        _                                __ _
+#   (_)|____ |    | |      | |                              / _(_)
+#    _     / / ___| |_ __ _| |_ _   _ ___    ___ ___  _ __ | |_ _  __ _
+#   | |    \ \/ __| __/ _` | __| | | / __|  / __/ _ \| '_ \|  _| |/ _` |
+#   | |.___/ /\__ \ || (_| | |_| |_| \__ \ | (_| (_) | | | | | | | (_| |
+#   |_|\____/ |___/\__\__,_|\__|\__,_|___/  \___\___/|_| |_|_| |_|\__, |
+#                                                                  __/ |
+#                                                                 |___/
+#
+#   ~/.config/i3status/config
+#   i3status configuration file.
+#   see "man i3status" for documentation.
+#
+#
+# Wrtitten to work on *most* GNU/Linux distributions.
+# Things not working or WIP are commented out. Unless I forgot.
+# Much of what follows has been "stolen" from many places over the years and
+# tweaked to suit my workflow and personal preferences; feel free to do the same.
+#
+# Remember, like with all of my work, I am only able to provide the following
+# assurance(s):
+# It is almost certainly going to work until it breaks; although I have to
+# admit it may never work and that would be sad.
+# When/if it does break, you may keep all of the pieces.
+# If you find my materials helpful, both you & I will be happy, at least for a
+# little while.
+# My advice is worth every penny you paid for it!
+#
+# by:
+# Giuseppe (mhsalvor) Molinaro
+# g.molinaro@linuxmail.org
+# https://githup.com/mhsalvor
+###
+
+###############################################################################
+# It is important that this file is edited as UTF-8.                          #
+# The following line should contain a sharp s:                                #
+# ß                                                                           #
+# If the above line is not correctly displayed, fix your editor first!        #
+###############################################################################
+
+#=== General configuration ===#
+
+general {
+        colors = true
+        interval = 5
+        color_good = "#2AA198"
+        color_bad = "#586E75"
+        color_degraded = "#DC322F"
+}
+
+#=== Widjets Order ===#
+
+# order += "ipv6"
+order += "cpu_usage"
+order += "disk /"
+order += "disk /home"
+#order += "wireless _first_"
+# order += "wireless wlo1"
+# order += "ethernet eth0"
+order += "battery all"
+# order += "load"
+# order += "cpu_temperature 0"
+order += "memory"
+order += "tztime local"
+
+
+#=== Widgets ===#
+
+cpu_usage {
+    #format = " cpu  %usage "
+    format = "  %usage "
+}
+
+load {
+    format = " load %1min "
+    # max_threshold = 0.3
+}
+
+disk "/" {
+    # format = " hdd %avail "
+    format = "  %avail "
+}
+
+disk "/home" {
+    format = "  %avail "
+}
+
+ethernet eth0 {
+# if you use %speed, i3status requires root privileges
+    format_up = " lan: %ip %speed "
+    format_down = " no lan "
+}
+
+battery all {
+    # format = "%status %percentage %remaining %emptytime"
+    format = " %status %percentage"
+    format_down = "No battery"
+    last_full_capacity = true
+    integer_battery_capacity = true
+    status_chr = "⚡"
+    status_bat = "🔋"
+    status_unk = "?"
+    status_full = "☻"
+    low_threshold = 15
+    threshold_type = time
+}
+
+memory {
+    format = " %used | %available"
+    threshold_degraded = "1G"
+    format_degraded = "MEMORY < %available"
+}
+
+tztime local {
+    # align = "center"
+    # format = "%Y-%m-%d %H:%M:%S"
+    format = " %d.%m  %H:%M "
+}
+
+wireless wlo1 {
+    format_up = "W: (%quality at %essid, %bitrate) %tip"
+    format_down = "W: down"
+}

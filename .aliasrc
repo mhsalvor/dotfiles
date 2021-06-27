@@ -1,0 +1,258 @@
+# vim: ft=bash
+#
+#           _ _
+#          | (_)
+#      __ _| |_  __ _ ___ _ __ ___
+#     / _` | | |/ _` / __| '__/ __|
+#    | (_| | | | (_| \__ \ | | (__
+#   (_)__,_|_|_|\__,_|___/_|  \___|
+#
+#   ~/.aliasrc
+#   This files contains all of my aliases and it's sourced at the end of
+#       ~/.bashrc
+#
+# Wrtitten to work on *most* GNU/Linux distributions.
+# Things not working or WIP are commented out. Unless I forgot.
+# Much of what follows has been "stolen" from many places over the years and
+# tweaked to suit my workflow and personal preferences; feel free to do the same.
+#
+# Remember, like with all of my work, I am only able to provide the following
+# assurance(s):
+# It is almost certainly going to work until it breaks; although I have to
+# admit it may never work and that would be sad.
+# When/if it does break, you may keep all of the pieces.
+# If you find my materials helpful, both you & I will be happy, at least for a
+# little while.
+# My advice is worth every penny you paid for it!
+#
+# by:
+# Giuseppe (mhsalvor) Molinaro
+# g.molinaro@linuxmail.org
+# https://githup.com/mhsalvor
+###
+
+# custom alias to manage my dotfiles via git bare repository
+#alias create='git init --bare $HOME/.dotfiles.git'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
+#alias nountracked='dotfiles config --local status.showUntrackedFiles no'
+#
+# to install this files to another system, create the dotfiles alias then:
+# echo ".dotfiles.git" >> .gitignore
+# git clone --bare https://www.github.com/username/repo.git $HOME/.dotfiles.git
+# dotfiles checkout
+# dotfiles config --local status.showUntrackedFiles no
+
+
+#=== Checks and alternative tools ===#
+
+# Use neovim instead of vim if installed
+command -v nvim > /dev/null && alias vim='nvim' vimdiff='nvim -d'
+# Use lsd instead of ls if installed
+command -v lsd > /dev/null && alias ls='lsd --group-dirs first' tree='lsd --tree' ||\
+    alias ls="ls -hNCF --colors=auto --group-directories-first -time-style=+'%d.%m.%Y %H:%M'"
+# Use colordiff instead of diff if installed
+command -v colordiff > /dev/null && alias diff='colordiff -u' ||\
+    alias diff='diff -u --color=auto'
+
+#=== Miscellanea and QoL ===#
+
+# grep colors
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+
+# donet is annoying
+alias dotnew='dotnet new'
+alias dotrun='dotnet run'
+
+# I've done this far too many times.
+alias :q='exit'
+
+#=== Devour ===#
+
+# https://github.com/salman-abedin/devour
+alias mpv='devour mpv'
+alias sxiv='devour sxiv'
+alias zathura='devour zathura'
+
+#=== Filesystem Navigation and Files ===#
+
+# cd
+alias cd-='cd -'                        # avoid annoying typos
+alias cd..='cd ..'
+alias -- -='cd -'                       # - goes back to the previous directory
+alias ..='cd ..'                        # up 1 level ...
+alias ..2='cd ../../'
+alias ..3='cd ../../../'
+alias ..4='cd ../../../../'
+alias ..5='cd ../../../../../'
+# ch*
+alias chgrp='chgrp --preserve-root'     # preserve "/" permissions and ownership
+alias chmod='chmod --preserve-root'
+alias chown='chown --preserve-root'
+# cp
+alias cp='cp -vi'                       # ask before overwriting, shows what it's doing
+# find
+alias fhere='find . -type f -name'      # search in the current directory
+# ls
+alias sl='ls'                           # avoid typos
+alias l.='ls -d .*'                     # only show hidden files
+alias la='ls -A'                        # show hidden files but hide "." and ".."
+alias lal='ls -Al'                      # I HAS THE FILES!
+alias ldir='ls -lF | grep ^d'           # only show directories
+alias ll='ls -l'                        # show details
+alias ll-date='ls -ltr'                 # sort by date
+alias ll-ext='ls -lXB'                  # sort by extension
+alias ll-size='ls -lSr'                 # sort by size
+# ln
+alias ln='ln -vi'                       # show results, ask before overwriting destination
+# mkdir
+alias mkdir='mkdir -pv'
+# mv
+alias mv=' mv -vi'                      # asl before overwriting, shows what it's doing
+# rm
+alias rm='rm -vI --preserve-root'
+# shred
+alias shred='shred -vuz'
+
+#== Text ===#
+
+# emacs
+#alias em='/usr/bin/emacs -nw'
+#alias emacs="/emacsclient -c -a ''"
+# less
+alias less='less -R'                        # raw ANSI control characters
+alias more='less'                           # more is less
+# nano
+alias np='nano -w PKGBUILD'
+# vim / neovim
+alias v='vim'
+
+# MISC
+alias ccat='highlight --out-format=ansi'    # colorfull cat, NOT script/pipe friendly
+alias edit='/usr/bin/nvim'
+alias more='less'
+
+#== Terminal ==#
+
+# date
+alias today="date +'%d-%m-%Y'"
+alias now="date +'%T'"
+# history
+alias hist='history'
+alias histgr='history | grep -i'
+# jobs
+alias jobs='jobs -l'                # lists all jobs in background, with details
+
+
+#=== System ===#
+
+# df
+alias df='df -Tha --total | column -t'      # human-readable and formatted output
+# du
+alias du='du -ach | sort -h'                # human-readable and sorted by size
+# free
+alias free='free -ht'                       # human-readable, with totals
+alias meminfo='free -mlt'
+# hwinfo
+alias hw='hwinfo --short'
+# mount
+alias mount='mount | column -t'
+# pacman
+alias pacman='pacman --color auto'
+alias pac-fix=' sudo rm -r /var/lib/pacman/db.lock && sudo pacman-mirrors -g && sudo pacman -Syyuu && sudo pacman -Suu'
+alias pac-unlock='sudo rm /var/lib/pacman/db.lock'
+# pactree
+alias pactree='pactree --color'
+# ps
+alias pscpu='ps auxf | sort -nr -k 3 |head -10'
+alias psgr='ps aux | grep -v grep | grep -i -e VSZ -e'
+alias psmem='ps auxf | sort -nr -k 4 | head -10'
+
+# MISC
+alias path="echo -e ${PATH}"
+alias try='xdg-open'
+alias which='type -all'
+
+#=== Network ===#
+
+# netstat
+alias ports='netstat -tulnap'
+# ping
+alias fastping='ping -c 100 -s.2'                   # don't wait 1s, go fast
+alias ping='ping -c 5'                              # no more infinite pinging
+# su
+alias su='/usr/bin/su'                              # I'm paranoid
+# sudo
+alias sudo='/usr/bin/sudo '                         # Paranoid and allow aliases expansion
+# wget
+alias wget='wget -c'
+
+# MISC
+alias myip='curl http://ipecho.net/plain; echo'     # my public IP
+
+
+#=== Fun ===#
+
+# unimatrix
+alias matrix='unimatrix -fa -lm -s 95'
+
+#=== Configuration Files ===#
+
+# figlet
+alias banner='figlet -f doom'       # creates an ACII art from the dotfile name
+
+# GREP
+alias gr.alacritty='cat ~/.config/alacritty/alacritty.yml | grep -i'
+alias gr.aliasrc='cat ~/.aliasrc | grep -i'
+alias gr.bashrc='cat ~/.bashrc | grep -i'
+alias gr.functions='cat ~/.functions | grep -i'
+alias gr.i3='cat ~/.config/i3/config | grep -i'
+alias gr.13status='cat ~/.config/i3status/config | grep -i'
+alias gr.inputrc='cat ~/.inputrc | grep -i'
+alias gr.picom='cat ~/.config/picom.conf | grep -i'
+alias gr.profile='cat ~/.profile | grep -i'
+alias gr.vimrc='cat ~/.config/nvim/init.vim | grep -i'
+alias gr.xinitrc='cat ~/.xinitrc | grep -i'
+# RELOAD
+alias re.aliasrc='source ~/.aliasrc'
+alias re.all='source ~/.bashrc ~/.aliasrc ~/.functions ~/.profile'
+alias re.bashrc='source ~/.functions'
+alias re.inputrc='bind -f ~/.inputrc'
+alias re.picom='pkill picom; sleep 1 && picom --experimental-backend -b'
+alias re.profile='source ~/.profile'
+alias xr.merge='xrdb -merge ~/.Xresources'
+# EDIT
+alias v.alacritty='v ~/.config/alacritty/alacritty.yml'
+alias v.aliasrc='v ~/.aliasrc'
+alias v.bashrc='v ~/.bashrc'
+alias v.blogout='v ~/.bash_logout'
+alias v.bprofile='v ~/.bash_profile'
+alias v.functions='v ~/.functions'
+alias v.i3='v ~/.config/i3/config'
+alias v.i3status='v ~/.config/i3status/config'
+alias v.inputrc='v ~/.inputrc'
+alias v.picom='v ~/.config/picom.conf'
+alias v.profile='v ~/.profile'
+alias v.vimrc='v ~/.config/nvim/init.vim'
+alias v.xinitrc='v ~/.xinitrc'
+alias v.xprofile='v ~/.xprofile'
+
+#=== Experimental / Other Distrubutions ===#
+
+# Slackware package management
+# alias safeinstall='upgradepakg --install-new'
+
+# mounting the folder Public for exchange between host and guest on virtualbox
+#alias vbm="sudo mount -t vboxsf -o rw,uid=1000,gid=1000 Public /home/$USER/Public"
+
+# less highlight
+#sudo pacman -S source-highlight
+#export LESSOPEN="| src-hilite-lesspipe.sh %s"
+#export LESS=' -R '
+#alias les='LESSOPEN="| src-hilite-lesspipe.sh %s" LESS=" -R " less -N'
+
+# aMule
+#alias amule='amule --config-dir=$HOME/.config/aMule/amule.conf'
+
+###EOF###
