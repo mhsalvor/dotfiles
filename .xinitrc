@@ -68,4 +68,5 @@ get_session(){
 
 #=== Start Session ===#
 exec $(get_session "$1")
-xset r rate 500 20
+
+###EOF###

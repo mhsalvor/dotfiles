@@ -214,6 +214,7 @@ alias gr.picom='cat ~/.config/picom.conf | grep -i'
 alias gr.profile='cat ~/.profile | grep -i'
 alias gr.vimrc='cat ~/.config/nvim/init.vim | grep -i'
 alias gr.xinitrc='cat ~/.xinitrc | grep -i'
+alias gr.xresources='cat ~/.Xresources | grep -i'
 # RELOAD
 alias re.aliasrc='source ~/.aliasrc'
 alias re.all='source ~/.bashrc ~/.aliasrc ~/.functions ~/.profile'
@@ -237,6 +238,7 @@ alias v.profile='v ~/.profile'
 alias v.vimrc='v ~/.config/nvim/init.vim'
 alias v.xinitrc='v ~/.xinitrc'
 alias v.xprofile='v ~/.xprofile'
+alias v.xresources='v ~/.Xresources'
 
 #=== Experimental / Other Distrubutions ===#
 

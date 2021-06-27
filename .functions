@@ -147,5 +147,4 @@ weather() {
     curl -s "https://wttr.in/${1:-Pisa}?m2F&format=v2"
 }
 
-
 ###EOF###

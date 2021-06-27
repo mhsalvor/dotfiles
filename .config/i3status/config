@@ -124,3 +124,5 @@ wireless wlo1 {
     format_up = "W: (%quality at %essid, %bitrate) %tip"
     format_down = "W: down"
 }
+
+###EOF###
