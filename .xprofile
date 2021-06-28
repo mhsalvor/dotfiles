@@ -94,7 +94,7 @@ unclutter --timeout 2 --exclude-root --ignore-scrolling &   # Remove mouse when 
 
 # Theming
 variety &
-picom -b --experimental-backend &
+picom --experimental-backend -b &
 start_conky_maia &
 
 # Power Management

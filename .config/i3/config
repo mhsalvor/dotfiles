@@ -204,6 +204,12 @@ mode "  " {
         bindsym Escape mode "default"
 }
 
+# Resize containers without entering "resize mode"
+bindsym $mod+$alt+h resize shrink width 5 px or 5 ppt
+bindsym $mod+$alt+j resize grow height 5 px or 5 ppt
+bindsym $mod+$alt+k resize shrink height 5 px or 5 ppt
+bindsym $mod+$alt+l resize grow width 5 px or 5 ppt
+
 #--- Scratchpad
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad

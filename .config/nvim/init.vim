@@ -70,7 +70,7 @@ Plug 'sainnhe/sonokai'                  " sonokai/maia theme
 Plug 'terryma/vim-multiple-cursors'                         " Multi-cursor
 Plug 'RRethy/vim-hexokinase', {'do': 'make hexokinase'}     " Async color preview
 Plug 'tpope/vim-surround'                                   " Change surrounding symbols
-Plug 'vimwiki/vimwiki'
+"Plug 'vimwiki/vimwiki'
 Plug 'junegunn/goyo.vim'
 Plug 'Yggdroot/indentLine'                                  " show indentations
 
@@ -167,6 +167,14 @@ noremap <silent> <A-Down> :resize -3<CR>
 nnoremap <leader>q :wq<CR>
 nnoremap <leader>w :w<CR>
 
+" Remap spellcheck key
+" [s move to previous mispelled word
+" ]s move to next mispelled word
+" zg > adds good word to personal dictionary
+" zw > marks word as incorrect
+" z= > show suggestions; difficult on italian keyboards
+nnoremap zl z=
+
 " Open terminal inside neovim
 map <leader>t :vnew term://bash<Cr>
 
@@ -182,9 +190,7 @@ map <C-p> "+P
 nnoremap <silent> Y y$
 
 " Spell check 'o' as in orthography
-map <leader>o :setlocal spell! spelllang=it
-" Toggle spell check.
-map <F5> :setlocal spell!<CR>
+map <F5> :setlocal spell! spelllang=it,en_us,en_gb<CR>
 
 " Replace All is aliased to S
 nnoremap S :%s//g<left><left>
@@ -277,6 +283,8 @@ set formatoptions+=1    " don't breack lines after 1 letter words
 set iskeyword-=.        " Make '.' end of word designator
 set iskeyword-=#        " Make '#' end of word designator
 
+"--- Custom spellings
+set spellfile=~/.config/nvim/techspeak.utf-8.add,~/.config/nvim/mywords.utf-8.add
 
 "--- Colors and Highlighting
 " Same color for sign column and line numbers
@@ -600,7 +608,7 @@ let g:indentLine_char = '·'
 
 "--- Fix some filetype detections
 "set g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-let g:vimwiki_list = [{'path': '~/Documenti/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
+" let g:vimwiki_list = [{'path': '~/Documenti/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
 autocmd BufRead,BufNewFile /tmp/calcurse*,~/.config/calcurse/notes/* set filetype=markdown
 autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 autocmd BufRead,BufNewFile *.tex set filetype=tex

@@ -49,6 +49,7 @@ general {
         color_good = "#2AA198"
         color_bad = "#586E75"
         color_degraded = "#DC322F"
+        markup = "pango"
 }
 
 #=== Widjets Order ===#
@@ -57,9 +58,8 @@ general {
 order += "cpu_usage"
 order += "disk /"
 order += "disk /home"
-#order += "wireless _first_"
 # order += "wireless wlo1"
-# order += "ethernet eth0"
+# order += "ethernet eno1"
 order += "battery all"
 # order += "load"
 # order += "cpu_temperature 0"
@@ -88,7 +88,7 @@ disk "/home" {
     format = "  %avail "
 }
 
-ethernet eth0 {
+ethernet eno1 {
 # if you use %speed, i3status requires root privileges
     format_up = " lan: %ip %speed "
     format_down = " no lan "
