@@ -1,4 +1,3 @@
-" vim: ft=vim
 "
 "    _       _ _         _
 "   (_)     (_) |       (_)
@@ -32,7 +31,7 @@
 
 "=== Leader keys ==="
 "
-" Space is a common choice fof <leader>, and an easy key to hit.
+" <space> is a common choice for <leader>, and an easy key to hit.
 " But, since I'm using an Italian QWERTY keyboard, I have a few keys that no
 " default config files written for standard QUWERTY will ever use.
 " You should consider changing theese.
@@ -140,6 +139,35 @@ set lispwords+=defaction,deffilter,defview,defsection   " Ciste core
 set lispwords+=describe,it                              " Speclj TDD/BDD
 
 "=== Key mappings ==="
+"-------- Mapping Legends {{{
+"------------------------------------------------------
+" http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
+"
+" nunmap - Unmap a normal mode map
+" vunmap - Unmap a visual and select mode map
+" xunmap - Unmap a visual mode map
+" sunmap - Unmap a select mode map
+" iunmap - Unmap an insert and replace mode map
+" cunmap - Unmap a command-line mode map
+" ounmap - Unmap an operator pending mode map
+"
+" mapclear  - Clear all normal, visual, select and operating pending mode maps
+" mapclear! - Clear all insert and command-line mode maps
+" nmapclear - Clear all normal mode maps
+" vmapclear - Clear all visual and select mode maps
+" xmapclear - Clear all visual mode maps
+" smapclear - Clear all select mode maps
+" imapclear - Clear all insert mode maps
+" cmapclear - Clear all command-line mode maps
+" omapclear - Clear all operating pending mode maps
+"
+" nmap, nnoremap, nunmap          Normal mode
+" imap, inoremap, iunmap          Insert and Replace mode
+" vmap, vnoremap, vunmap          Visual and Select mode
+" xmap, xnoremap, xunmap          Visual mode
+" smap, snoremap, sunmap          Select mode
+" cmap, cnoremap, cunmap          Command-line mode
+" omap, onoremap, ounmap          Operator pending mode
 
 " Remap ESC to èè in INSERT mode
 " as with the leader keys, I am taking full advantage of my non english
@@ -203,6 +231,9 @@ inoremap <leader><leader> <Esc>/<++><Enter>"_c4l
 vnoremap <leader><leader> <Esc>/<++><Enter>"_c4l
 map <leader><leader> <Esc>/<++><Enter>"_c4l
 
+" Shell check
+map <leader>p :!clear && shellcheck %<CR>
+
 "=== General Appearances and Quality of Life ==="
 
 "--- AirLine Statusbar
@@ -234,6 +265,7 @@ set cursorcolumn            " highlight cursor column
 set nohlsearch              " turn off permanent highlighting of search results
 set list
 set listchars=tab:▸·,nbsp:␣,trail:·
+set showbreak=↪
 set showmatch               " show bracket matches
 
 "--- Indentation
@@ -261,11 +293,31 @@ set nowrap          " disable line wrap
 set linebreak       " When wrapping, do only so at a certain character
 
 "--- Folding
+" folding hotkeys
+" S-v zf while in visual line mode create fold
+" C-v zf while is visual block mode create fold
+" zf#j   creates a fold from the cursor down numbers of lines.
+" zf/    string creates a fold from the cursor to string .
+" za     When on a closed fold, open it.and vice-versa.
+" zA     When on a closed fold, open it recursively.and vice-versa
+" zj     moves the cursor to the next fold.
+" zk     moves the cursor to the previous fold.
+" zo     opens a fold at the cursor.
+" zO     opens all folds at the cursor.
+" zm     increases the foldlevel by one.
+" zM     closes all open folds.
+" zr     decreases the foldlevel by one.
+" zR     decreases the foldlevel to zero -- all folds will be open.
+" zd     deletes the fold at the cursor.
+" zE     deletes all folds.
+" [z     move to start of open fold.
+" ]z     move to end of open fold.
 set foldcolumn=0        " column to show folds
 set foldenable          " enable folding
 set foldlevelstart=1    " folding on a newly opened file
 set foldlevel=1         " default foldlevel to 1 to see headings
 set foldmethod=syntax   " collapse using syntax
+"set foldmethod=marker   " collapse using markers, defaults are {{{,}}}
 set foldminlines=0     " allow folding single lines
 set foldnestmax=5       " set mazx fold nesting level
 
@@ -616,8 +668,8 @@ autocmd BufRead,BufNewFile *.tex set filetype=tex
 "--- Enable spellcheking when needed
 autocmd FileType tex,latex,markdown setlocal spell spelllang=it,en_us,en_gb
 
-" Shell check
-map <leader>p :!clear && shellcheck %<CR>
+"--- Mutt
+autocmd BufRead,BufNewFile ~/.mutt/tmp/* set filetype=mail | set textwidth=80 | set spell |  set wrap | setlocal spell spelllang=it,en_us,en_gb
 
 "--- TeX and LaTeX
 " Runs a script that cleans out tex build files whenever I close out of a .tex file.
@@ -747,4 +799,4 @@ map <Leader>sv :source $MYVIMRC<CR>
 " Run xrdb whenever Xdefaults or Xresources are updated.
 autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 
-"""EOF"""
+"""EOF""" vim: ft=vim

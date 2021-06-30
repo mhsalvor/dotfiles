@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# vim: ft=bash
 #
 #                            __ _ _
 #                           / _(_) |
@@ -116,4 +115,4 @@ clipit &
 ff-theme-util &
 fix_xcursor &
 
-###EOF###
+###EOF### vim: ft=bash

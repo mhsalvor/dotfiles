@@ -1,4 +1,4 @@
-# vim: ft=bash
+#
 #      _               _
 #     | |             | |
 #     | |__   __ _ ___| |__  _ __ ___
@@ -43,7 +43,9 @@
 
 #-- set
 set -o notify   # immediate background job termination notification
+
 #--- bind
+
 #-- Internal
 shopt -s autocd # navigate directories without cd
 shopt -s cdspell # autocorrect cd misplelling
@@ -62,6 +64,8 @@ shopt -s hostcomplete # attempt do complete hostnames
 shopt -s interactive_comments # enable comments in interactive shells
 shopt -s promptvars # prompt strings undergo paramater expansion/command substitution etc..
 shopt -s sourcepath # the source (.) builtin uses PATH to find the argument
+shopt -s globstar # the pattern ** will match all files, directories and subdirectories
+
 #-- History
 export HISTSIZE=10000 # store 10000 commands in history buffer
 export HISTFILESIZE=${HISTSIZE} # do the same for the history file
@@ -70,6 +74,7 @@ export HISTCONTROL=$HISTCONTROL # bug in shell
 export HISTIGNORE="&:pwd:exit:clear"
 export HISTTIMEFORMAT="%Y/%m/%d %H:%M:%S:   " # Add a timestamp to each command
 export SAVEHIST=1 # save history regardless of number of terminals
+
 #-- Completion
 complete -cf sudo       # enable <TAB> completion with sudo
 complete -A alias       alias unalias
@@ -86,6 +91,7 @@ complete -A group       groupdel groupmod newgrp
 complete -A directory   cd rmdir
 complete -f -X '!*.@(gif|GIF|jpg|JPG|jpeg|JPEG|png|PNG|xcf)' gimp
 complete -W "$(echo `cat ~/.bash_history | egrep '^ssh ' | sort | uniq | sed 's/^ssh //'`;)" ssh # autocomplete ssh commands
+
 #-- Permissions
 xhost +local:root > /dev/null 2>&1  # Allow root to make connections to the X server
 
@@ -178,7 +184,7 @@ unset use_color safe_term match_lhs sh
 
 # load aliases
 [[ -f "$HOME/.aliasrc" ]] && source "$HOME/.aliasrc"
-# # lod functions
+# load functions
 [[ -f "$HOME/.functions" ]] && source "$HOME/.functions"
 
 ##== Fun ===#
@@ -189,4 +195,4 @@ if [ -e "/usr/games/fortune" ]; then
     echo
 fi
 
-###EOF###
+###EOF### vim: ft=bash

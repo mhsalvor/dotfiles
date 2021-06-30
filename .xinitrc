@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# vim: ft=bash
+#
 #           _       _ _
 #          (_)     (_) |
 #     __  ___ _ __  _| |_ _ __ ___
@@ -69,4 +69,4 @@ get_session(){
 #=== Start Session ===#
 exec $(get_session "$1")
 
-###EOF###
+###EOF### vim: ft=bash

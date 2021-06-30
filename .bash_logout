@@ -1,4 +1,3 @@
-# vim: ft=bash
 #
 #      _               _       _                         _
 #     | |             | |     | |                       | |
@@ -36,4 +35,4 @@
 clear
 reset
 
-###EOF###
+###EOF### vim: ft=bash

@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# vim: ft=bash
 #
 #       __                  _   _
 #      / _|                | | (_)
@@ -142,9 +141,4 @@ nameswap() {
 }
 #=== - ===#
 
-#=== weather - show the weather ===#
-weather() {
-    curl -s "https://wttr.in/${1:-Pisa}?m2F&format=v2"
-}
-
-###EOF###
+###EOF### vim: ft=bash

@@ -1,6 +1,5 @@
-# vim: ft=bash
 #
-#     _               _                          __ _ _
+#      _               _                          __ _ _
 #     | |             | |                        / _(_) |
 #     | |__   __ _ ___| |__      _ __  _ __ ___ | |_ _| | ___
 #     | '_ \ / _` / __| '_ \    | '_ \| '__/ _ \|  _| | |/ _ \
@@ -59,4 +58,4 @@
 # [ ----> [] source by convention (manually. Ignored otherwise
 # FIRST : find the first available, ignore the rest
 
-###EOF###
+###EOF### vim: ft=bash

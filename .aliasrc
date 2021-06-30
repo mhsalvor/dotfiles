@@ -1,4 +1,3 @@
-# vim: ft=bash
 #
 #           _ _
 #          | (_)
@@ -196,6 +195,8 @@ alias myip='curl http://ipecho.net/plain; echo'     # my public IP
 
 # unimatrix
 alias matrix='unimatrix -fa -lm -s 95'
+alias wttr='curl wttr.in/pisa?lang=it'          # wwather report
+alias wttrlong='curl wttr.in/pisa?format=v2'
 
 #=== Configuration Files ===#
 
@@ -206,6 +207,7 @@ alias banner='figlet -f doom'       # creates an ACII art from the dotfile name
 alias gr.alacritty='cat ~/.config/alacritty/alacritty.yml | grep -i'
 alias gr.aliasrc='cat ~/.aliasrc | grep -i'
 alias gr.bashrc='cat ~/.bashrc | grep -i'
+alias gr.dunstrc='cat ~/.config/dunst/dunstrc | grep -i'
 alias gr.functions='cat ~/.functions | grep -i'
 alias gr.i3='cat ~/.config/i3/config | grep -i'
 alias gr.13status='cat ~/.config/i3status/config | grep -i'
@@ -219,6 +221,7 @@ alias gr.xresources='cat ~/.Xresources | grep -i'
 alias re.aliasrc='source ~/.aliasrc'
 alias re.all='source ~/.bashrc ~/.aliasrc ~/.functions ~/.profile'
 alias re.bashrc='source ~/.functions'
+alias re.dunstrc='pkill dunst && dunst &'
 alias re.inputrc='bind -f ~/.inputrc'
 alias re.picom='pkill picom; sleep 1 && picom --experimental-backend -b'
 alias re.profile='source ~/.profile'
@@ -229,6 +232,7 @@ alias v.aliasrc='v ~/.aliasrc'
 alias v.bashrc='v ~/.bashrc'
 alias v.blogout='v ~/.bash_logout'
 alias v.bprofile='v ~/.bash_profile'
+alias v.dunstrc='v ~/.config/dunst/dunstrc'
 alias v.functions='v ~/.functions'
 alias v.i3='v ~/.config/i3/config'
 alias v.i3status='v ~/.config/i3status/config'
@@ -257,4 +261,4 @@ alias v.xresources='v ~/.Xresources'
 # aMule
 #alias amule='amule --config-dir=$HOME/.config/aMule/amule.conf'
 
-###EOF###
+###EOF### vim: ft=bash

@@ -1,4 +1,3 @@
-# vim: ft=bash
 #
 #                       __ _ _
 #                      / _(_) |
@@ -128,4 +127,4 @@ unset MANPATH # Man is much better than us at figuring this out
 # Switch escape and caps if tty:
 # sudo -n loadkeys ~/.local/bin/ttymaps.kmap 2>/dev/null
 
-###EOF###
+###EOF### vim: ft=bash
