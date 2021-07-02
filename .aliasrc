@@ -71,7 +71,7 @@ alias :q='exit'
 
 # https://github.com/salman-abedin/devour
 alias mpv='devour mpv'
-alias sxiv='devour sxiv'
+alias viewnior='devour viewnior'
 alias zathura='devour zathura'
 
 #=== Filesystem Navigation and Files ===#

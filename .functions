@@ -33,55 +33,55 @@
 
 #=== ext - archive omni-eextractor ===#
 # use: ext <file>
-ext (){
-    if [ ! -f $1 ] ; then
-        # display usage if no paramaters are given
-        echo "Use: ext <file1> [file2 file 2] ..."
-        return 1
-    else
-        for n in $@
-        do
-            if [ -f "$n" ] ; then
-                case "${n%.}" in
-                    *.tar.bz2)  tar xjf "$n" ;;
-                    *.tbz2)     tar xjf "$n" ;;
-                    *.tar.gz)   tar xzf "$n" ;;
-                    *.tgz)      tar xzf "$n" ;;
-                    *.tar.xz)   tar xvf "$n" ;;
-                    *.txz)      tar xvf "$n" ;;
-                    *.tar)      tar xvf "$n" ;;
-                    *.lzma)     unlzma "$n" ;;
-                    *.bz2)      bunzip "$n" ;;
-                    *.rar)      unrar x -ad "$n" ;;
-                    *.gz)       gunzip "$n" ;;
-                    *.zip)      unzip "$n" ;;
-                    *.7z)       7z x "$n" ;;
-                    *.arj)      7z x "$n" ;;
-                    *.cab)      7z x "$n" ;;
-                    *.chm)      7z x "$n" ;;
-                    *.dmg)      7z x "$n" ;;
-                    *.iso)      7z x "$n" ;;
-                    *.lzh)      7z x "$n" ;;
-                    *.msi)      7z x "$n" ;;
-                    *.rpm)      7z x "$n" ;;
-                    *.udf)      7z x "$n" ;;
-                    *.wim)      7z x "$n" ;;
-                    *.xar)      7z x "$n" ;;
-                    *.deb)      ar x "$n" ;;
-                    *.xz)       unxz "$n" ;;
-                    *.exe)      cabextract "$n" ;;
-                    *.z)        uncompress "$n" ;;
-                    *.Z)        uncompress "$n" ;;
-                    *) echo "ext: '$n' - unknown archive method"
-                        return 1 ;;
-                esac
-            else
-                echo "'$n' - is not a valid file or does not exist."
-                return 1
-            fi
-        done
-    fi
-}
+# ext (){
+#     if [ ! -f $1 ] ; then
+#         # display usage if no paramaters are given
+#         echo "Use: ext <file1> [file2 file 2] ..."
+#         return 1
+#     else
+#         for n in $@
+#         do
+#             if [ -f "$n" ] ; then
+#                 case "${n%.}" in
+#                     *.tar.bz2)  tar xjf "$n" ;;
+#                     *.tbz2)     tar xjf "$n" ;;
+#                     *.tar.gz)   tar xzf "$n" ;;
+#                     *.tgz)      tar xzf "$n" ;;
+#                     *.tar.xz)   tar xvf "$n" ;;
+#                     *.txz)      tar xvf "$n" ;;
+#                     *.tar)      tar xvf "$n" ;;
+#                     *.lzma)     unlzma "$n" ;;
+#                     *.bz2)      bunzip "$n" ;;
+#                     *.rar)      unrar x -ad "$n" ;;
+#                     *.gz)       gunzip "$n" ;;
+#                     *.zip)      unzip "$n" ;;
+#                     *.7z)       7z x "$n" ;;
+#                     *.arj)      7z x "$n" ;;
+#                     *.cab)      7z x "$n" ;;
+#                     *.chm)      7z x "$n" ;;
+#                     *.dmg)      7z x "$n" ;;
+#                     *.iso)      7z x "$n" ;;
+#                     *.lzh)      7z x "$n" ;;
+#                     *.msi)      7z x "$n" ;;
+#                     *.rpm)      7z x "$n" ;;
+#                     *.udf)      7z x "$n" ;;
+#                     *.wim)      7z x "$n" ;;
+#                     *.xar)      7z x "$n" ;;
+#                     *.deb)      ar x "$n" ;;
+#                     *.xz)       unxz "$n" ;;
+#                     *.exe)      cabextract "$n" ;;
+#                     *.z)        uncompress "$n" ;;
+#                     *.Z)        uncompress "$n" ;;
+#                     *) echo "ext: '$n' - unknown archive method"
+#                         return 1 ;;
+#                 esac
+#             else
+#                 echo "'$n' - is not a valid file or does not exist."
+#                 return 1
+#             fi
+#         done
+#     fi
+# }
 #=== - ===#
 
 #=== colors - prints the current colorscheme ===#

@@ -62,7 +62,8 @@
     # the top and down respectevly.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "0x4-25+25"
+    #geometry = "0x4-25+25"
+    geometry = "0x4-5+25"
 
     # Turn on the progress bar
     progress_bar = true
@@ -102,10 +103,10 @@
     # Set to 0 to disable.
     separator_height = 1
 
-    # Padding between text and separator.
+    # Vertical padding between text and separator/window border.
     padding = 8
 
-    # Horizontal padding.
+    # Horizontal padding between text and separator/window border.
     horizontal_padding = 10
 
     # Padding between text and icon.
@@ -296,6 +297,19 @@
     # parameter, an application may close the notification sent before the
     # user defined timeout.
     ignore_dbusclose = false
+
+#=== Mouse ===#
+
+    # Defines action of mouse event
+    # Possible values are:
+    # * none: Don't do anything.
+    # * do_action: If the notification has exactly one action, or one is marked as default,
+    #              invoke it. If there are multiple and no default, open the context menu.
+    # * close_current: Close current notification.
+    # * close_all: Close all notifications.
+    mouse_left_click = close_current
+    mouse_middle_click = do_action
+    mouse_right_click = close_all
 
 [shortcuts]
 

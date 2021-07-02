@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#
 #           _       _ _
 #          (_)     (_) |
 #     __  ___ _ __  _| |_ _ __ ___
@@ -67,6 +66,7 @@ get_session(){
 #/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 #=== Start Session ===#
+
 exec $(get_session "$1")
 
 ###EOF### vim: ft=bash

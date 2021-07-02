@@ -316,9 +316,11 @@ set foldcolumn=0        " column to show folds
 set foldenable          " enable folding
 set foldlevelstart=1    " folding on a newly opened file
 set foldlevel=1         " default foldlevel to 1 to see headings
+"set foldignore=         " don't ignore anything when folding. USE ONLY w/ foldmethod=indent
+"set foldmethod=indent   " collapse using indentation
 set foldmethod=syntax   " collapse using syntax
 "set foldmethod=marker   " collapse using markers, defaults are {{{,}}}
-set foldminlines=0     " allow folding single lines
+set foldminlines=0      " allow folding single lines
 set foldnestmax=5       " set mazx fold nesting level
 
 "--- Automatic formatting
