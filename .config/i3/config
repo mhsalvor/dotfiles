@@ -71,6 +71,7 @@ font pango:DejaVuSansMono Nerd Font:style=Book 9
 # exec_always --no-startup-id fix_xcursor
 #
 # Put here what you want to start only with i3
+exec --no-startup-id fusuma -c=~/.config/fusuma/i3_config.yml -d
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##

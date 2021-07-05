@@ -73,6 +73,7 @@ fi
 # Authentication services
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 gnome-keyring-daemon --start --components=pkcs11 &
+eval $(ssd-agent -s) &
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -85,11 +86,11 @@ blueman-applet &
 
 # X settings
 xfsettingsd &
-xset r rate 250 50 &                                        # Speed xrate up
+xset r rate 250 50 &                                            # Speed xrate up
 numlockx &
-unclutter --timeout 2 --exclude-root --ignore-scrolling &   # Remove mouse when idle
-#sxhd  &                                                    # Start the SimpleXHotkeysDaemon
-#dunst &                                                    # dunst for notifications
+unclutter --timeout 2 --exclude-root --ignore-scrolling -b &    # Remove mouse when idle
+#sxhd  &                                                        # Start the SimpleXHotkeysDaemon
+#dunst &                                                        # dunst for notifications
 
 # Theming
 variety &

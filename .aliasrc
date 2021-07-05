@@ -45,13 +45,15 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
 #=== Checks and alternative tools ===#
 
 # Use neovim instead of vim if installed
-command -v nvim > /dev/null && alias vim='nvim' vimdiff='nvim -d'
+command -v nvim > /dev/null && alias vim='nvim ' vimdiff='nvim -d '
 # Use lsd instead of ls if installed
 command -v lsd > /dev/null && alias ls='lsd --group-dirs first' tree='lsd --tree' ||\
     alias ls="ls -hNCF --colors=auto --group-directories-first -time-style=+'%d.%m.%Y %H:%M'"
 # Use colordiff instead of diff if installed
 command -v colordiff > /dev/null && alias diff='colordiff -u' ||\
     alias diff='diff -u --color=auto'
+# Use bat instead of cat if installed
+command -v bat > /dev/null && alias cat='bat '
 
 #=== Miscellanea and QoL ===#
 
@@ -202,6 +204,10 @@ alias wttrlong='curl wttr.in/pisa?format=v2'
 
 # figlet
 alias banner='figlet -f doom'       # creates an ACII art from the dotfile name
+# Preamble
+alias disclaimer='cat ~/lRepo/LazyPenguin/_snippets/disclaimer.txt'
+alias preamble='cat ~/lRepo/LazyPenguin/_snippets/disclaimer.txt\
+    ~/lRepo/LazyPenguin/_snippets/Copyright.txt'
 
 # GREP
 alias gr.alacritty='cat ~/.config/alacritty/alacritty.yml | grep -i'
@@ -211,7 +217,7 @@ alias gr.dunstrc='cat ~/.config/dunst/dunstrc | grep -i'
 alias gr.functions='cat ~/.functions | grep -i'
 alias gr.i3='cat ~/.config/i3/config | grep -i'
 alias gr.13status='cat ~/.config/i3status/config | grep -i'
-alias gr.inputrc='cat ~/.inputrc | grep -i'
+alias gr.inputrc='cat ~/.config/readline/inputrc | grep -i'
 alias gr.picom='cat ~/.config/picom.conf | grep -i'
 alias gr.profile='cat ~/.profile | grep -i'
 alias gr.vimrc='cat ~/.config/nvim/init.vim | grep -i'
@@ -222,7 +228,7 @@ alias re.aliasrc='source ~/.aliasrc'
 alias re.all='source ~/.bashrc ~/.aliasrc ~/.functions ~/.profile'
 alias re.bashrc='source ~/.functions'
 alias re.dunstrc='pkill dunst && dunst &'
-alias re.inputrc='bind -f ~/.inputrc'
+alias re.inputrc='bind -f ~/.config/readline/inputrc'
 alias re.picom='pkill picom; sleep 1 && picom --experimental-backend -b'
 alias re.profile='source ~/.profile'
 alias xr.merge='xrdb -merge ~/.Xresources'
@@ -236,7 +242,7 @@ alias v.dunstrc='v ~/.config/dunst/dunstrc'
 alias v.functions='v ~/.functions'
 alias v.i3='v ~/.config/i3/config'
 alias v.i3status='v ~/.config/i3status/config'
-alias v.inputrc='v ~/.inputrc'
+alias v.inputrc='v ~/.config/readline/inputrc'
 alias v.picom='v ~/.config/picom.conf'
 alias v.profile='v ~/.profile'
 alias v.vimrc='v ~/.config/nvim/init.vim'

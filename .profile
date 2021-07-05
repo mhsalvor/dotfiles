@@ -42,7 +42,6 @@ export LANGUAGE=it_IT.UTF-8:en_US-UTF-8
 export LC_ALL=it_IT.UTF-8
 export GROFF_ENCODING=utf8
 
-
 #=== Path ===#
 
 # Adds ~/.local/bin and all the subdirectories to $PATH
@@ -51,20 +50,70 @@ PATH="${PATH}:$HOME/.local/bin"
 #export PATH="$PATH"
 # remove duplicate path entries
 export PATH=$(echo $PATH | awk -F: '{ for (i = 1; i <= NF; i++) arr[$i]; } END { for (i in arr) printf "%s:" , i; printf "\n"; } ')
+
 #--- XDG
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CONFIG_DIRS="/usr/etc/xdg:/etc/xdg"
+export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
+export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
+export XDG_CONFIG_DIRS=${XDG_CONFIG_DIRS:="/usr/etc/xdg:/etc/xdg"}
+
 #--- Config files : keep $HOME clean!
-#export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+# Aspell
+export ASPELL_CONF="per-conf $XDG_CONFIG_HOME/aspell/aspell.conf;\
+    personal $XDG_CONFIG_HOME/aspell/en.pws;\
+    repl $XDG_CONFIG_HOME/aspell/en.prepl"
+# Bash Completion
+export BASH_COMPLETION_USER_FILE="$XDG_CONFIG_HOME"/bash-completion/bash_completion
+# Ruby#Bundler
+export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME"/bundle
+export BUNDLE_USER_CACHE="$XDG_CACHE_HOME"/bundle
+export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
+# Ruby#RubyGems
+### make sure to remove "--unsr-isntall" from /etc/gemrc
+export GEM_HOME="$XDG_DATA_HOME"/gem
+export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
+# Rust#Cargo
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+# Ryst#Rustup
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+# Conky
+#alias conky='conky --config="$XDG_CONFIG_HOME"/conky/conkyrc'
+# dircolors
+export MY_DIRCOLORS="${XDG_CONFIG_HOME}/dir_colors"
+eval $(dircolors $MY_DIRCOLORS)
+# Go
+export GOPATH="$XDG_DATA_HOME"/go
+# GTK 1
+export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
+# GTK 2
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+# npmrc
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+# nvidia-settings
+alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings'
+# nvm
+export NVM_DIR="$XDG_DATA_HOME"/nvm
+# pass
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
+# readline
+export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
+# TeX Live
+export TEXMFHOME=$XDG_DATA_HOME/texmf
+export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
+export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
+# urxvtd
+export RXVT_SOCKET="$XDG_RUNTIME_DIR"/urxvtd
+# Wine
+export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
+# nvim -- thist helps with "sudo -e"
 export MYVIMRC="$HOME/.config/nvim/init.vim"
-export NPM_CONFIG_PREFIX="$HOME/.local"
-export MOZILLA_HOME=$HOME/.mozilla
+# svn
+alias svn='svn --config-dir "$XDG_CONFIG_HOME"/subversion'
+# Weechat
+export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
 # WIP - TODO
 # export SUDO_ASKPASS="$HOME/.local/bin/tools/dmenupass"
-[[ -d "$HOME/.local/lib/go" ]] && export GOPATH="$HOME/.local/lib/go"
 
 #=== Preferred Applications ===#
 

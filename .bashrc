@@ -98,7 +98,7 @@ xhost +local:root > /dev/null 2>&1  # Allow root to make connections to the X se
 #=== Checks ===#
 
 # Use user defined colors if found
-[[ -x /usr/bin/dircolors ]] && eval $(dircolors -b $HOME/.dir_colors) ||\
+[[ -x /usr/bin/dircolors ]] && eval $(dircolors -b $MY_DIRCOLORS) ||\
     eval $(dircolors -b)
 
 # Use bash-completion if present
@@ -111,6 +111,9 @@ xhost +local:root > /dev/null 2>&1  # Allow root to make connections to the X se
 
 # make less more friendly for non-text input files. Lists files inside archives etc...
 [[ -x /usr/bin/lesspipe.sh ]] && eval "$(SHELL=/bin/sh lesspipe.sh)"
+
+# nvm
+[[ -f "/usr/share/nvm/init-nvm.sh" ]] && source /usr/share/nvm/init-nvm.sh
 
 # Change the window title of X terminals
 case ${TERM} in
@@ -146,7 +149,7 @@ getExitStatus() {
 # globbing instead of external grep binary.
 safe_term=${TERM//[^[:alnum:]]/?}   # sanitize TERM
 match_lhs=""
-[[ -f ~/.dir_colors   ]] && match_lhs="${match_lhs}$(<~/.dir_colors)"
+[[ -f ~/.dir_colors   ]] && match_lhs="${match_lhs}$(<$MY_DIRCOLORS)"
 [[ -f /etc/DIR_COLORS ]] && match_lhs="${match_lhs}$(</etc/DIR_COLORS)"
 [[ -z ${match_lhs}    ]] \
     && type -P dircolors >/dev/null \
@@ -157,7 +160,7 @@ if ${use_color} ; then
     # Enable colors.  Prefer ~/.dir_colors #64489
     if type -P dircolors >/dev/null ; then
         if [[ -f ~/.dir_colors ]] ; then
-            eval $(dircolors -b ~/.dir_colors)
+            eval $(dircolors -b MY_DIRCOLORS)
         elif [[ -f /etc/DIR_COLORS ]] ; then
             eval $(dircolors -b /etc/DIR_COLORS)
         fi

@@ -1,0 +1,49 @@
+swipe:
+  3:
+    left:
+      command: 'xdotool key alt+Left'   # history back
+    right:
+      command: 'xdotool key alt+Right' # history forward
+    up:
+      command: 'xdotool key ctrl+t'   # open new tab
+      keypress:
+        LEFTSHIFT:
+          command: 'xdotool key --clearmodifier ctrl+shift+t' # open last closed tab
+    down:
+      command: 'xdotool key ctrl+w' # close tab
+  4:
+    left:
+     command: exec i3 workspace next  # switch to next workspace
+     keypress:
+      LEFTSHIFT:
+        command: exec i3 move container to workspace next
+        #LEFTMETA:
+        #command -- move container to the left ---
+    right:
+      command: exec i3 workspace prev
+      keypress:
+        LEFTSHIFT: exec i3 move container to workspace prev
+    up:
+      command: exec i3 fullscreen toggle
+    down:
+      command: exec i3 floating toggle
+pinch:
+  in:
+    command: 'xdotool key ctrl+plus'
+  out:
+     command: 'xdotool key ctrl+minus'
+
+threshold:
+  swipe: 0.4
+  pinch: 0.4
+
+interval:
+  swipe: 0.8
+  pinch: 0.1
+
+  plugins:
+    inputs:
+      libinput_command_input: #options for lib/plugin/inputs/libinput_command_input
+        enable-tap: true # click to tap
+        enable-dwt: true # disable tap while typing
+        show-keycodes: true # https://github.com/iberianpig/fusuma-plugin-keypress#add-show-keycode-option

@@ -56,6 +56,7 @@ general {
 # order += "ipv6"
 order += "cpu_usage"
 order += "disk /"
+order += "disk /fast"
 order += "disk /home"
 # order += "wireless wlo1"
 # order += "ethernet eno1"
@@ -83,6 +84,9 @@ disk "/" {
     format = "  %avail "
 }
 
+disk "/fast" {
+    format = "  %avail"
+}
 disk "/home" {
     format = "  %avail "
 }
@@ -116,7 +120,8 @@ memory {
 tztime local {
     # align = "center"
     # format = "%Y-%m-%d %H:%M:%S"
-    format = " %d.%m  %H:%M "
+    #format = " %d.%m  %H:%M "
+    format = "%a, %d %B %k:%M"
 }
 
 wireless wlo1 {
