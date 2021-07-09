@@ -73,7 +73,7 @@ fi
 # Authentication services
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 gnome-keyring-daemon --start --components=pkcs11 &
-eval $(ssd-agent -s) &
+eval $(ssh-agent -s) &
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -98,7 +98,7 @@ picom --experimental-backend -b &
 start_conky_maia &
 
 # Power Management
-xfce4-power-manager &
+xfce4-power-manager --no-daemon &
 
 # Audio
 start-pulseaudio-x11 &
@@ -113,7 +113,7 @@ clipit &
 #dropbox start &
 
 # Fixes
-ff-theme-util &
+# ff-theme-util &
 fix_xcursor &
 
 ###EOF### vim: ft=bash

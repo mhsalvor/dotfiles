@@ -66,12 +66,15 @@ Plug 'vim-airline/vim-airline-themes'   " AirLine themes
 Plug 'sainnhe/sonokai'                  " sonokai/maia theme
 
 " Quality of life
-Plug 'terryma/vim-multiple-cursors'                         " Multi-cursor
+" Plug 'terryma/vim-multiple-cursors'                         " Multi-cursor
 Plug 'RRethy/vim-hexokinase', {'do': 'make hexokinase'}     " Async color preview
 Plug 'tpope/vim-surround'                                   " Change surrounding symbols
+"Plug 'frazrepo/vim-rainbow'    " display parenteses with colors depending on levels
 "Plug 'vimwiki/vimwiki'
 Plug 'junegunn/goyo.vim'
 Plug 'Yggdroot/indentLine'                                  " show indentations
+Plug 'godlygeek/tabular'                                    " Tables and text autoalign
+Plug 'clarke/vim-renumber'                                  " Auto-renumber markdown lists
 
 " Compilers
 Plug 'tpope/vim-dispatch'                   " Ascyncronous compiler dispatch
@@ -89,7 +92,8 @@ Plug 'baskerville/vim-sxhkdrc'          " Simple X Hotkey Daemon config file
 Plug 'mboughaba/i3config.vim'           " i3 configuration file
 Plug 'vim-python/python-syntax'         " better Python support
 Plug 'Vimjas/vim-python-pep8-indent'    " Python PEP8 indentation
-"Plug 'frazrepo/vim-rainbow'    " display parenteses with colors depending on levels
+Plug 'gabrielelana/vim-markdown'        " Better support for GitHub style Markdown
+
 
 " Syntax checking
 Plug 'vim-syntastic/syntastic'
@@ -657,6 +661,7 @@ autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo \| set bg=light
 "let g:indentLine_setColors = 0     " Use the colorscheme colors
 let g:indentLine_char = '·'
 "let g:indentLine_setConceal = 0    " don't change conceal settings
+let g:indentLine_fileTypeExclude = ['markdown']
 
 "=== Filetype specific options ==="
 
@@ -766,6 +771,7 @@ autocmd FileType bib inoremap ,b @book{<Enter>author<Space>=<Space>{<++>},<Enter
 autocmd FileType bib inoremap ,c @incollection{<Enter>author<Space>=<Space>{<++>},<Enter>title<Space>=<Space>{<++>},<Enter>booktitle<Space>=<Space>{<++>},<Enter>editor<Space>=<Space>{<++>},<Enter>year<Space>=<Space>{<++>},<Enter>publisher<Space>=<Space>{<++>},<Enter>}<Enter><++><Esc>8kA,<Esc>i
 
 "--- Markdown
+autocmd FileType markdown,rmd set conceallevel=2
 autocmd Filetype markdown,rmd map <leader>w yiWi[<esc>Ea](<esc>pa)
 autocmd Filetype markdown,rmd inoremap ,n ---<Enter><Enter>
 autocmd Filetype markdown,rmd inoremap ,b ****<++><Esc>F*hi

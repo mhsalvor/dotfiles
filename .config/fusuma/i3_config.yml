@@ -29,9 +29,9 @@ swipe:
       command: exec i3 floating toggle
 pinch:
   in:
-    command: 'xdotool key ctrl+plus'
+      command: 'xdotool key ctrl+plus'
   out:
-     command: 'xdotool key ctrl+minus'
+      command: 'xdotool key ctrl+minus'
 
 threshold:
   swipe: 0.4
